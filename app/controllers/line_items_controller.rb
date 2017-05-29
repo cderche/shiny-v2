@@ -28,7 +28,7 @@ class LineItemsController < ApplicationController
   def create
     # @line_item = LineItem.new(line_item_params)
     product = Product.find(params[:product_id])
-    @line_item = @cart.line_items.build(product: product)
+    @line_item = @cart.add_product(product)
 
     respond_to do |format|
       if @line_item.save
@@ -59,9 +59,17 @@ class LineItemsController < ApplicationController
   # DELETE /line_items/1
   # DELETE /line_items/1.json
   def destroy
-    @line_item.destroy
+    # Set this for js response
+    @cart = @line_item.cart
+
+    if @line_item.quantity > 1
+      @line_item.update(quantity: @line_item.quantity - 1)
+    else
+      @line_item.destroy
+    end
     respond_to do |format|
       format.html { redirect_to line_items_url, notice: 'Line item was successfully destroyed.' }
+      format.js
       format.json { head :no_content }
     end
   end
