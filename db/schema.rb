@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170529140943) do
+ActiveRecord::Schema.define(version: 20170529170243) do
+
+  create_table "carts", force: :cascade do |t|
+    t.date     "start_date"
+    t.time     "start_time"
+    t.text     "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "discounts", force: :cascade do |t|
     t.string   "coupon"
