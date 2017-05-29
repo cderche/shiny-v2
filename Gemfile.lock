@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/cderche/pages-rails
+  revision: d9648293513d5bc8a1bd42aa91b4a0c54e9f300e
+  specs:
+    pages-rails (2.1.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -53,6 +59,8 @@ GEM
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.18)
+    font-awesome-sass (4.7.0)
+      sass (>= 3.2)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     i18n (0.8.1)
@@ -156,9 +164,11 @@ PLATFORMS
 DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
+  font-awesome-sass (~> 4.7.0)
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
+  pages-rails (= 2.1.5)!
   puma (~> 3.0)
   rails (~> 5.0.3)
   sass-rails (~> 5.0)

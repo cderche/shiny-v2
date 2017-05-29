@@ -1,0 +1,14 @@
+//= require pace/pace-theme-flash
+//= require bootstrapv3/css/bootstrap.min
+//= require jquery-scrollbar/jquery.scrollbar
+//= require bootstrap-select2/select2
+//= require switchery/css/switchery.min
+//= require pages-icons
+
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+@import "pages";
+
+//= require_tree .
+//= require_self
