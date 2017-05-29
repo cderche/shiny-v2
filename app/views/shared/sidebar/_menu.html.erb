@@ -3,8 +3,9 @@
   <!-- BEGIN SIDEBAR MENU ITEMS-->
   <ul class="menu-items">
 
-    <%= render partial: 'shared/sidebar/item', locals: { klass: 'm-t-30', path: products_path, title: 'Products', icon: 'fa-shopping-bag', details: pluralize(Product.count, 'product') } %>
-    <%= render partial: 'shared/sidebar/item', locals: { klass: '', path: discounts_path, title: 'Discounts', icon: 'fa-percent', details: pluralize(Discount.count, 'discount') } %>
+    <%= render partial: 'shared/sidebar/item', locals: { klass: 'm-t-30'  , path: products_path   , title: 'Products'   , icon: 'fa-shopping-bag'   , details: pluralize(Product.count, 'product') } %>
+    <%= render partial: 'shared/sidebar/item', locals: { klass: ''        , path: discounts_path  , title: 'Discounts'  , icon: 'fa-percent'        , details: pluralize(Discount.count, 'discount') } %>
+    <%= render partial: 'shared/sidebar/item', locals: { klass: ''        , path: carts_path      , title: 'Carts'      , icon: 'fa-shopping-cart'  , details: pluralize(Cart.count, 'cart') } %>
 
   </ul>
   <!-- END SIDEBAR MENU ITEMS-->

@@ -1,19 +1,22 @@
-<p id="notice"><%= notice %></p>
+<div class="panel panel-default m-t-30">
+  <div class="panel-heading">
+    <h1 class="panel-title">Show Cart</h1>
+    <div class="pull-right">
+      <%= link_to carts_path, class: 'btn btn-default' do %>
+        <i class="fa fa-shopping-cart"></i>
+      <% end %>
+      <%= link_to edit_cart_path(@cart), class: 'btn btn-warning' do %>
+        <i class="fa fa-pencil"></i>
+      <% end %>
+      <%= link_to @cart, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do %>
+        <i class="fa fa-trash"></i>
+      <% end %>
+    </div>
+    <span class="clearfix"></span>
+  </div>
 
-<p>
-  <strong>Start date:</strong>
-  <%= @cart.start_date %>
-</p>
-
-<p>
-  <strong>Start time:</strong>
-  <%= @cart.start_time %>
-</p>
-
-<p>
-  <strong>Note:</strong>
-  <%= @cart.note %>
-</p>
-
-<%= link_to 'Edit', edit_cart_path(@cart) %> |
-<%= link_to 'Back', carts_path %>
+  <div class="panel-body">
+    <%= render 'shared/notice' %>
+    <%= render 'form', cart: @cart %>
+  </div>
+</div>

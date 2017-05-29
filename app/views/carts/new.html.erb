@@ -1,5 +1,15 @@
-<h1>New Cart</h1>
+<div class="panel panel-default m-t-30">
+  <div class="panel-heading">
+    <h1 class="panel-title">New Cart</h1>
+    <div class="pull-right">
+      <%= link_to carts_path, class: 'btn btn-default' do %>
+        <i class="fa fa-shopping-cart"></i>
+      <% end %>
+    </div>
+    <span class="clearfix"></span>
+  </div>
 
-<%= render 'form', cart: @cart %>
-
-<%= link_to 'Back', carts_path %>
+  <div class="panel-body">
+    <%= render 'form', cart: @cart %>
+  </div>
+</div>

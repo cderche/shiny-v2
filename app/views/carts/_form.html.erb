@@ -1,32 +1,40 @@
-<%= form_for(cart) do |f| %>
-  <% if cart.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(cart.errors.count, "error") %> prohibited this cart from being saved:</h2>
+<%= form_for(cart, html: { class: 'form-horizontal' }) do |f| %>
+  <%= render partial: 'shared/error', locals: { object: cart } %>
 
-      <ul>
-      <% cart.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <div class="form-group">
+    <%= f.label :start_date, class: 'col-sm-3 control-label' %>
+    <div class="col-sm-3 col-md-2">
+      <%= f.text_field :start_date, class: 'form-control', disabled: (action_name == 'show') %>
     </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :start_time, class: 'col-sm-3 control-label' %>
+    <div class="col-sm-3 col-md-2">
+      <%= f.text_field :start_time, class: 'form-control', disabled: (action_name == 'show') %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :note, class: 'col-sm-3 control-label' %>
+    <div class="col-sm-3 col-md-2">
+      <%= f.text_area :note, class: 'form-control', disabled: (action_name == 'show') %>
+    </div>
+  </div>
+
+  <% if action_name != 'show' %>
+  <div class="form-group">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-9">
+      <%= f.submit class: 'btn btn-success' %>
+    </div>
+  </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :start_date %>
-    <%= f.date_select :start_date %>
-  </div>
+<% end %>
 
-  <div class="field">
-    <%= f.label :start_time %>
-    <%= f.time_select :start_time %>
-  </div>
+<% content_for :script do %>
+  <script type="text/javascript">
 
-  <div class="field">
-    <%= f.label :note %>
-    <%= f.text_area :note %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  </script>
 <% end %>
