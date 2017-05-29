@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170529184632) do
+ActiveRecord::Schema.define(version: 20170529193054) do
 
   create_table "carts", force: :cascade do |t|
-    t.date     "start_date"
-    t.time     "start_time"
+    t.text     "start_date"
+    t.text     "start_time", default: "10:00"
     t.text     "note"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "discounts", force: :cascade do |t|

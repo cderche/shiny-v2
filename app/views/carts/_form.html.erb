@@ -107,7 +107,8 @@
     <% if action_name != 'show' %>
 
     $('.date').datepicker({
-      startDate: '<%= @cart.start_date.strftime("%d/%m/%Y") %>',
+      defaultViewDate: moment(<%= @cart.start_date %>).toDate(),
+      startDate: 'today',
       format: 'dd/mm/yyyy'
     });
 
@@ -115,7 +116,7 @@
 
     $(".timepicker").timepicker({
       minuteStep: 30,
-      defaultTime: "<%= @cart.start_time.strftime("%H:%M") %>",
+      defaultTime: "<%= @cart.start_time %>",
       showMeridian: false
     });
   </script>

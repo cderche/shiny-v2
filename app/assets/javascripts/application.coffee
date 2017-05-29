@@ -13,6 +13,7 @@
 #= require jquery-autonumeric/autoNumeric.js
 #= require bootstrap-datepicker/js/bootstrap-datepicker.js
 #= require bootstrap-timepicker/bootstrap-timepicker.min
+#= require moment/moment.min
 #= require pages
 #= require turbolinks
 #= require_tree .

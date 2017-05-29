@@ -1,6 +1,8 @@
 class Cart < ApplicationRecord
   has_many :line_items, dependent: :destroy
 
+  before_create :set_defaults
+
   def add_product(product)
     current_item = line_items.find_by(product: product)
     if current_item
@@ -9,5 +11,15 @@ class Cart < ApplicationRecord
       current_item = line_items.build(product: product)
     end
     current_item
+  end
+
+  private
+
+  def set_defaults
+    set_defaults_date
+  end
+
+  def set_defaults_date
+    self.start_date = Date.today.strftime('%d/%m/%Y')
   end
 end
