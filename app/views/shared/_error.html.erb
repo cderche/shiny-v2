@@ -1,0 +1,16 @@
+<!-- ERROR MESSAGE -->
+<% if object.errors.any? %>
+  <div class="alert alert-danger" role="alert">
+    <p class="semi-bold">
+      <i class="fa fa-exclamation-triangle"></i>
+      <%= pluralize(object.errors.count, "error") %> prohibited this from being saved:
+    </p>
+    <ul>
+      <% object.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+
+  </div>
+<% end %>
+<!-- END ERROR MESSAGE -->

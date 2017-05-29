@@ -1,24 +1,22 @@
-<p id="notice"><%= notice %></p>
+<div class="panel panel-default m-t-30">
+  <div class="panel-heading">
+    <h1 class="panel-title">Show Product</h1>
+    <div class="pull-right">
+      <%= link_to products_path, class: 'btn btn-default' do %>
+        <i class="fa fa-shopping-bag"></i>
+      <% end %>
+      <%= link_to edit_product_path(@product), class: 'btn btn-warning' do %>
+        <i class="fa fa-pencil"></i>
+      <% end %>
+      <%= link_to @product, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do %>
+        <i class="fa fa-trash"></i>
+      <% end %>
+    </div>
+    <span class="clearfix"></span>
+  </div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @product.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
-
-<p>
-  <strong>Image url:</strong>
-  <%= @product.image_url %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @product.price %>
-</p>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+  <div class="panel-body">
+    <%= render 'shared/notice' %>
+    <%= render 'form', product: @product %>
+  </div>
+</div>

@@ -1,6 +1,16 @@
-<h1>Editing Product</h1>
+<div class="panel panel-default m-t-30">
+  <div class="panel-heading">
+    <h1 class="panel-title">Editing Product</h1>
+    <div class="pull-right">
+      <%= link_to @product, class: 'btn btn-default' do %>
+        <i class="fa fa-shopping-bag"></i>
+      <% end %>
+    </div>
+    <span class="clearfix"></span>
+  </div>
 
-<%= render 'form', product: @product %>
-
-<%= link_to 'Show', @product %> |
-<%= link_to 'Back', products_path %>
+  <div class="panel-body">
+    <%= render 'shared/notice' %>
+    <%= render 'form', product: @product %>
+  </div>
+</div>

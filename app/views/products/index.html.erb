@@ -5,11 +5,7 @@
     <span class="clearfix"></span>
   </div>
   <div class="panel-body">
-    <% if notice %>
-    <div class="alert alert-info">
-      <%= notice %>
-    </div>
-    <% end %>
+    <%= render 'shared/notice' %>
 
     <div class="table-responsive">
       <table class="table">
