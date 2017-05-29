@@ -5,10 +5,34 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="fixed-header">
+    <%= render 'shared/sidebar' %>
+
+    <div class="page-container">
+
+      <%= render 'shared/header' %>
+
+      <!-- PAGE CONTENT WRAPPER -->
+      <div class="page-content-wrapper">
+
+        <!-- PAGE CONTENT -->
+        <div class="content container">
+          <%= yield %>
+        </div>
+        <!-- END PAGE CONTENT -->
+
+        <%= render 'shared/footer' %>
+
+      </div>
+      <!-- END PAGE CONTENT WRAPPER -->
+
+    </div>
+    <!-- END PAGE CONTAINER -->
+
+    <%= render 'shared/quickview' %>
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true, 'data-turbolinks-eval' => false %>
   </body>
 </html>

@@ -1,0 +1,13 @@
+<!-- BEGIN SIDEBAR MENU -->
+<div class="sidebar-menu">
+  <!-- BEGIN SIDEBAR MENU ITEMS-->
+  <ul class="menu-items">
+
+    <%= render partial: 'shared/sidebar/item', locals: { klass: 'm-t-30', path: products_path, title: 'Products', icon: 'fa-shopping-bag', details: pluralize(Product.count, 'product') } %>
+
+  </ul>
+  <!-- END SIDEBAR MENU ITEMS-->
+  <div class="clearfix"></div>
+</div>
+
+<!-- END SIDEBAR MENU -->

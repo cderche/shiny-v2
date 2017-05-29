@@ -54,3 +54,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'pages-rails', '2.1.5', git: 'https://github.com/cderche/pages-rails'
 gem 'font-awesome-sass', '~> 4.7.0'
+gem 'inline_svg'

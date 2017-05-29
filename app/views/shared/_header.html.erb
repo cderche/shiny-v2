@@ -1,0 +1,31 @@
+<!-- HEADER -->
+<div class="header">
+  <div class=" pull-center">
+    <div class="header-inner">
+      <div class="brand inline">
+        <%= inline_svg 'logo.svg', height: 15, class: 'brand' %>
+      </div>
+
+      <%# render 'shared/header/notifications' %>
+
+      <!-- <a href="#" class="search-link" data-toggle="search">
+        <i class="pg-search"></i>Type anywhere to
+        <span class="bold">search</span>
+      </a> -->
+
+    </div>
+  </div>
+
+  <%= render 'shared/header/mobile' %>
+
+  <div class=" pull-right">
+    <div class="header-inner">
+      <a href="#" class="btn-link icon-set menu-hambuger-plus m-l-20 sm-no-margin hidden-sm hidden-xs" data-toggle="quickview" data-toggle-element="#quickview"></a>
+    </div>
+  </div>
+
+  <%= render 'shared/header/profile' %>
+
+</div>
+
+<!-- END HEADER -->
