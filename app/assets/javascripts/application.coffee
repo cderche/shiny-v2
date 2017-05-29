@@ -10,6 +10,7 @@
 #= require jquery-actual/jquery.actual.min
 #= require jquery-scrollbar/jquery.scrollbar.min
 #= require jquery-inputmask/jquery.inputmask.min.js
+#= require jquery-autonumeric/autoNumeric.js
 #= require pages
 #= require turbolinks
 #= require_tree .

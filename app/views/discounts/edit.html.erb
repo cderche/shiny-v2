@@ -1,0 +1,16 @@
+<div class="panel panel-default m-t-30">
+  <div class="panel-heading">
+    <h1 class="panel-title">Editing Discount</h1>
+    <div class="pull-right">
+      <%= link_to @discount, class: 'btn btn-default' do %>
+        <i class="fa fa-percent"></i>
+      <% end %>
+    </div>
+    <span class="clearfix"></span>
+  </div>
+
+  <div class="panel-body">
+    <%= render 'shared/notice' %>
+    <%= render 'form', discount: @discount %>
+  </div>
+</div>

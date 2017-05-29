@@ -25,7 +25,7 @@
   <div class="form-group">
     <%= f.label :price, class: 'col-sm-3 control-label' %>
     <div class="col-sm-9">
-      <%= f.text_field :price, class: 'form-control', disabled: (action_name == 'show') %>
+      <%= f.text_field :price, class: 'form-control autonumeric', data: { a_sign: ' RUB', p_sign: 's' }, disabled: (action_name == 'show') %>
     </div>
   </div>
 
@@ -48,4 +48,10 @@
   </div>
   <% end %>
 
+<% end %>
+
+<% content_for :script do %>
+  <script type="text/javascript">
+    $('.autonumeric').autoNumeric('init');
+  </script>
 <% end %>

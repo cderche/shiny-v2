@@ -1,0 +1,80 @@
+<%= form_for(discount, html: { class: 'form-horizontal' }) do |f| %>
+  <%= render partial: 'shared/error', locals: { object: discount } %>
+
+  <div class="form-group">
+    <%= f.label :coupon, class: 'col-sm-3 control-label' %>
+    <div class="col-sm-9">
+      <%= f.text_field :coupon, class: 'form-control', disabled: (action_name == 'show') %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :discount_type, class: 'col-sm-3 control-label' %>
+    <div class="col-sm-9">
+      <div class="radio radio-success">
+        <%= f.collection_radio_buttons :discount_type, Discount.discount_types, :first, :first, disabled: (Discount.discount_types.map { |k,v| k } if (action_name == 'show')) %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :value, class: 'col-sm-3 control-label' %>
+    <div class="col-sm-3 col-md-2">
+      <%= f.text_field :value, class: 'form-control autonumeric', disabled: (action_name == 'show') %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :recurring, class: 'col-sm-3 control-label' %>
+    <div class="col-sm-9">
+      <div class="checkbox check-success">
+        <%= f.check_box :recurring, disabled: (action_name == 'show') %>
+        <%= f.label :recurring %>
+      </div>
+    </div>
+  </div>
+
+  <% if action_name != 'show' %>
+  <div class="form-group">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-9">
+      <%= f.submit class: 'btn btn-success' %>
+    </div>
+  </div>
+  <% end %>
+
+<% end %>
+
+
+<% content_for :script do %>
+  <script type="text/javascript">
+    $('.autonumeric').autoNumeric('init');
+
+    function updateAutonumeric(element, type) {
+      
+      if (type === "percentage") {
+        element.autoNumeric('update', {
+          vMin: '1',
+          vMax: '100',
+          aSign: '%',
+          pSign: 's'
+        });
+      }else{
+        element.autoNumeric('update', {
+          vMin: '1',
+          vMax: '1000',
+          aSign: ' RUB',
+          pSign: 's'
+        });
+      }
+    }
+
+    $('input[name="discount[discount_type]"').change(function() {
+      // Reset the value of the discount
+      updateAutonumeric($('#discount_value'), this.value)
+    })
+
+    updateAutonumeric($('#discount_value'), "<%= discount.discount_type %>");
+
+  </script>
+<% end %>

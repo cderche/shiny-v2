@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170529104102) do
+ActiveRecord::Schema.define(version: 20170529140943) do
+
+  create_table "discounts", force: :cascade do |t|
+    t.string   "coupon"
+    t.integer  "discount_type", default: 0
+    t.integer  "value"
+    t.boolean  "recurring",     default: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
 
   create_table "products", force: :cascade do |t|
     t.string   "title"

@@ -1,0 +1,34 @@
+<div class="panel panel-default m-t-30">
+  <div class="panel-heading">
+    <h1 class="panel-title">Discounts</h1>
+    <%= link_to 'New Discount', new_discount_path, class: 'pull-right btn btn-success' %>
+    <span class="clearfix"></span>
+  </div>
+  <div class="panel-body">
+    <%= render 'shared/notice' %>
+
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <th>Coupon</th>
+          <th>Value</th>
+          <th>Recurring</th>
+          <th colspan="3"></th>
+        </thead>
+        <tbody>
+          <% @discounts.each do |discount| %>
+            <tr>
+              <td class="v-align-middle"><%= discount.coupon %></td>
+              <td class="v-align-middle"><%= format_discount(discount) %></td>
+              <td class="v-align-middle"><%= content_tag :i, nil, class: 'fa fa-check text-success' if discount.recurring %></td>
+              <td class="v-align-middle"><%= link_to 'Show', discount, class: 'btn btn-xs btn-primary' %></td>
+              <td class="v-align-middle"><%= link_to 'Edit', edit_discount_path(discount), class: 'btn btn-xs btn-warning' %></td>
+              <td class="v-align-middle"><%= link_to 'Destroy', discount, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
