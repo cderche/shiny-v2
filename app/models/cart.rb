@@ -13,6 +13,10 @@ class Cart < ApplicationRecord
     current_item
   end
 
+  def sub_total
+    line_items.to_a.sum { |i| i.total_price }
+  end
+
   private
 
   def set_defaults

@@ -3,5 +3,16 @@
   <td class="text-right"><%= number_to_currency(line_item.product.price, locale: :ru) %></td>
   <td><%= line_item.quantity %></td>
   <td class="text-right"><%= number_to_currency(line_item.total_price, locale: :ru) %></td>
-  <td><%= link_to 'Remove Unit', line_item, method: :delete, remote: true, class: 'btn btn-danger' %></td>
+  <td>
+    <% if action_name != 'show' %>
+    <div class="btn-group btn-group-sm">
+      <%= link_to line_items_path(product_id: line_item.product.id, cart_id: line_item.cart.id), method: :post, remote: true, class: 'btn btn-success btn-sm' do %>
+        <i class="fa fa-plus"></i>
+      <% end %>
+      <%= link_to line_item, method: :delete, remote: true, class: 'btn btn-danger btn-sm' do %>
+        <i class="fa fa-minus"></i>
+      <% end %>
+    </div>
+    <% end %>
+  </td>
 </tr>

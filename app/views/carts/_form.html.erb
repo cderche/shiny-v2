@@ -34,18 +34,21 @@
   <%= f.label :line_items, class: 'col-sm-3 control-label' %>
 
   <div class="col-sm-9">
+    <% if action_name != 'show' %>
     <a href="#" data-toggle="modal" data-target="#products-modal" class="btn btn-sm pull-right">Show Products</a>
     <div class="clearfix"></div>
+    <% end %>
     <div class="table-responsive">
       <table class="table table-condensed">
         <thead>
           <th>Product</th>
           <th>Price</th>
           <th>Quantity</th>
-          <th colspan="2"></th>
+          <th>Total</th>
+          <th></th>
         </thead>
         <tbody id="line_items">
-          <%= render(@cart.line_items) %>
+          <%= render 'line_items/body' %>
         </tbody>
       </table>
     </div>
