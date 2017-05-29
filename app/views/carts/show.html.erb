@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @cart.start_date %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @cart.start_time %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @cart.note %>
+</p>
+
+<%= link_to 'Edit', edit_cart_path(@cart) %> |
+<%= link_to 'Back', carts_path %>
