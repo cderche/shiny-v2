@@ -4,14 +4,22 @@
 <div class="form-group">
   <%= f.label :start_date, class: 'col-sm-3 control-label' %>
   <div class="col-sm-3 col-md-2">
-    <%= f.text_field :start_date, class: 'form-control', disabled: (action_name == 'show') %>
+    <div class="input-group date">
+      <%= f.text_field :start_date, class: 'form-control', disabled: (action_name == 'show') %>
+      <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+    </div>
   </div>
 </div>
 
 <div class="form-group">
   <%= f.label :start_time, class: 'col-sm-3 control-label' %>
   <div class="col-sm-3 col-md-2">
-    <%= f.text_field :start_time, class: 'form-control', disabled: (action_name == 'show') %>
+    <div class="input-group bootstrap-timepicker">
+      <%= f.text_field :start_time, class: 'form-control timepicker', disabled: (action_name == 'show') %>
+      <span class="input-group-addon">
+        <i class="fa fa-clock-o"></i>
+      </span>
+    </div>
   </div>
 </div>
 
@@ -95,5 +103,20 @@
 </div>
 
 <% content_for :script do %>
-<script type="text/javascript"></script>
+  <script type="text/javascript">
+    <% if action_name != 'show' %>
+
+    $('.date').datepicker({
+      startDate: '<%= @cart.start_date.strftime("%d/%m/%Y") %>',
+      format: 'dd/mm/yyyy'
+    });
+
+    <% end %>
+
+    $(".timepicker").timepicker({
+      minuteStep: 30,
+      defaultTime: "<%= @cart.start_time.strftime("%H:%M") %>",
+      showMeridian: false
+    });
+  </script>
 <% end %>

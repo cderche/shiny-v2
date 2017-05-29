@@ -11,6 +11,8 @@
 #= require jquery-scrollbar/jquery.scrollbar.min
 #= require jquery-inputmask/jquery.inputmask.min.js
 #= require jquery-autonumeric/autoNumeric.js
+#= require bootstrap-datepicker/js/bootstrap-datepicker.js
+#= require bootstrap-timepicker/bootstrap-timepicker.min
 #= require pages
 #= require turbolinks
 #= require_tree .
