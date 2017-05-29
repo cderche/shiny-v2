@@ -1,7 +1,7 @@
 <div class="panel panel-default m-t-30">
   <div class="panel-heading">
     <h1 class="panel-title">Carts</h1>
-    <%= link_to 'New Cart', new_cart_path, class: 'pull-right btn btn-success' %>
+    <%= link_to 'New Cart', carts_path(cart: { start_date: Date.today, start_time: Time.now }), method: :post, class: 'pull-right btn btn-success' %>
     <span class="clearfix"></span>
   </div>
   <div class="panel-body">
@@ -16,7 +16,7 @@
           <th colspan="3"></th>
         </thead>
         <tbody>
-          <% @carts.each do |discount| %>
+          <% @carts.each do |cart| %>
             <tr>
               <td class="v-align-middle"><%= cart.id %></td>
               <td class="v-align-middle"><%= cart.start_date %></td>
