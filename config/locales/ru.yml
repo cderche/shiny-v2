@@ -1,0 +1,7 @@
+ru:
+  hello: "Привет мир"
+  number:
+    currency:
+      format:
+        format: "%n %u"
+        unit: "RUB"
