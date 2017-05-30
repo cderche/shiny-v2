@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shiny</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="fixed-header">
+
+    <div class="login-wrapper">
+      <div class="bg-pic">
+        <%= image_tag 'login.jpg', data: { src: image_path('devise.jpg'), src_retina: image_path('devise.jpg') }, class: 'lazy' %>
+        <div class="bg-caption pull-bottom sm-pull-bottom text-white p-l-20 m-b-20">
+          <h2 class="semi-bold text-white">
+            Pages make it easy to enjoy what matters the most in the life</h2>
+          <p class="small">
+            images Displayed are solely for representation purposes only, All work copyright of respective owner, otherwise © 2013-2014 REVOX.
+          </p>
+        </div>
+      </div>
+
+      <div class="login-container bg-white">
+        <div class="p-l-50 m-l-20 p-r-50 m-r-20 p-t-50 m-t-30 sm-p-l-15 sm-p-r-15 sm-p-t-40">
+          <%= inline_svg 'logo.svg', height: 24 %>
+          <%= yield %>
+
+          <!-- START links -->
+          <div class="m-t-20 fs-11">
+            <%= render 'devise/shared/links' %>
+          </div>
+          <!-- END links -->
+
+          <!-- START Footer -->
+          <div class="pull-bottom sm-pull-bottom">
+            <div class="m-b-30 p-r-80 sm-m-t-20 sm-p-r-15 sm-p-b-20 clearfix">
+              <div class="col-sm-3 hidden-xs">
+                <%= inline_svg 'icon.svg', class: 'no-padding', width: 40 %>
+              </div>
+              <div class="col-sm-9 m-t-20 no-padding">
+                <p>
+                  <small>
+                    Create a pages account. If you have a facebook account, log into it for this process. Sign in with
+                    <a href="#" class="text-info">Facebook</a>
+                    or
+                    <a href="#" class="text-info">Google</a>
+                  </small>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- END Footer -->
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true, 'data-turbolinks-eval' => false %>
+    <%= content_for :script %>
+  </body>
+</html>

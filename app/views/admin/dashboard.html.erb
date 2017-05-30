@@ -1,0 +1,13 @@
+<div class="container-fluid padding-25 sm-padding-10">
+  <div class="row">
+    <div class="col-sm-4">
+      <%= render partial: 'shared/widgets/counter', locals: { title: 'Products', path: products_path, text: Product.count } %>
+    </div>
+    <div class="col-sm-4">
+      <%= render partial: 'shared/widgets/counter', locals: { title: 'Discounts', path: discounts_path, text: Discount.count } %>
+    </div>
+    <div class="col-sm-4">
+      <%= render partial: 'shared/widgets/counter', locals: { title: 'Carts', path: carts_path, text: Cart.count } %>
+    </div>
+  </div>
+</div>
