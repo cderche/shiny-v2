@@ -1,5 +1,6 @@
 class Cart < ApplicationRecord
   has_many :line_items, dependent: :destroy
+  has_many :discount_items, dependent: :destroy
   belongs_to :user, optional: true
 
   before_create :set_defaults
@@ -14,8 +15,24 @@ class Cart < ApplicationRecord
     current_item
   end
 
+  def add_discount(discount)
+    current_item = discount_items.find_by(discount: discount)
+    unless current_item
+      current_item = discount_items.build(discount: discount)
+    end
+    current_item
+  end
+
   def sub_total
     line_items.to_a.sum { |i| i.total_price }
+  end
+
+  def discount_total
+    discount_items.to_a.sum { |i| i.real_value }
+  end
+
+  def total
+    sub_total - discount_total
   end
 
   private

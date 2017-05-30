@@ -7,4 +7,5 @@ class Discount < ApplicationRecord
   # http://guides.rubyonrails.org/active_record_validations.html#presence
   validates :recurring, inclusion: { in: [true, false] }
   validates :recurring, exclusion: { in: [nil] }
+
 end

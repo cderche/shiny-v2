@@ -1,0 +1,27 @@
+<!-- LINE ITEMS INPUT -->
+<div class="form-group">
+  <%= f.label :line_items, class: 'col-sm-3 control-label' %>
+
+  <div class="col-sm-9">
+    <% if action_name != 'show' %>
+    <a href="#" data-toggle="modal" data-target="#products-modal" class="btn btn-sm pull-right">Show Products</a>
+    <div class="clearfix"></div>
+    <% end %>
+    <div class="table-responsive">
+      <table class="table table-condensed text-right">
+        <thead>
+          <th class="text-right"></th>
+          <th class="text-right">Product</th>
+          <th class="text-right">Price</th>
+          <th class="text-right">Quantity</th>
+          <th class="text-right">Total</th>
+        </thead>
+        <tbody id="line_items">
+          <%= render @cart.line_items %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+<!-- END LINE ITEMS INPUT -->

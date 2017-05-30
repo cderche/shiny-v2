@@ -1,0 +1,42 @@
+<!-- DISCOUNTS MODAL -->
+<div class="modal fade slide-right" id="discounts-modal" tabindex="-1" role="dialog" aria-labelledby="discounts" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content-wrapper">
+      <div class="modal-content table-block">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <i class="pg-close fs-14"></i>
+        </button>
+        <div class="modal-body">
+
+          <!-- PRODUCTS TABLE -->
+          <div class="table-responsive">
+            <table class="table table-condensed">
+              <thead>
+                <th>Discount</th>
+                <th>Value</th>
+                <th></th>
+              </thead>
+              <tbody>
+                <% Discount.all.each do |discount| %>
+                <tr>
+                  <td class="bold"><%= discount.coupon %></td>
+                  <td>
+                    <%= number_to_currency(discount.value, locale: :ru) if discount.fixed? %>
+                    <%= "#{discount.value}%" if discount.percentage? %>
+                  </td>
+                  <td><%= link_to 'Add discount', discount_items_path(discount_id: discount.id, cart_id: @cart.id), method: :post, remote: true, class: 'btn btn-success' %></td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <!-- END PRODUCTS TABLE -->
+
+        </div>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- END DISCOUNTS MODAL -->

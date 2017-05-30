@@ -1,0 +1,8 @@
+<!-- _NOTE INPUT -->
+<div class="form-group">
+  <%= f.label :note, class: 'col-sm-3 control-label' %>
+  <div class="col-sm-4">
+    <%= f.text_area :note, class: 'form-control', disabled: (action_name == 'show') %>
+  </div>
+</div>
+<!-- END _NOTE INPUT -->

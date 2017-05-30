@@ -1,8 +1,5 @@
 <tr>
-  <td class="bold"><%= line_item.product.title %></td>
-  <td class="text-right"><%= number_to_currency(line_item.product.price, locale: :ru) %></td>
-  <td class="text-center"><%= line_item.quantity %></td>
-  <td class="text-right"><%= number_to_currency(line_item.total_price, locale: :ru) %></td>
+
   <td>
     <% if action_name != 'show' %>
     <div class="btn-group btn-group-sm">
@@ -15,4 +12,9 @@
     </div>
     <% end %>
   </td>
+
+  <td class="bold"><%= line_item.product.title %></td>
+  <td class="text-right"><%= number_to_currency(line_item.product.price, locale: :ru) %></td>
+  <td class="text-center"><%= line_item.quantity %></td>
+  <td class="text-right"><%= number_to_currency(line_item.total_price, locale: :ru) %></td>
 </tr>

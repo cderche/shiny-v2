@@ -1,0 +1,8 @@
+<!-- USER INPUT -->
+<div class="form-group">
+  <%= f.label :user, class: 'col-sm-3 control-label' %>
+  <div class="col-sm-3">
+    <%= f.collection_select :user_id, User.all, :id, :email, {}, { class: 'form-control', disabled: (action_name == 'show') } %>
+  </div>
+</div>
+<!-- END USER INPUT -->

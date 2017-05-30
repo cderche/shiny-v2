@@ -1,137 +1,29 @@
 <%= form_for(cart, html: { class: 'form-horizontal' }) do |f| %>
-<%= render partial: 'shared/error', locals: { object: cart } %>
 
-<div class="form-group">
-  <%= f.label :user, class: 'col-sm-3 control-label' %>
-  <div class="col-sm-3">
-    <%= f.collection_select :user_id, User.all, :id, :email, {}, { class: 'form-control', disabled: (action_name == 'show') } %>
-  </div>
-</div>
+  <%= render partial: 'shared/error', locals: { object: cart } %>
 
-<div class="form-group">
-  <%= f.label :start_date, class: 'col-sm-3 control-label' %>
-  <div class="col-sm-3">
-    <div class="input-group date">
-      <%= f.text_field :start_date, class: 'form-control', disabled: (action_name == 'show') %>
-      <span class="input-group-addon">
-        <i class="fa fa-calendar"></i>
-      </span>
-    </div>
-  </div>
-</div>
-
-<div class="form-group">
-  <%= f.label :start_time, class: 'col-sm-3 control-label' %>
-  <div class="col-sm-3">
-    <div class="input-group bootstrap-timepicker">
-      <%= f.text_field :start_time, class: 'form-control timepicker', disabled: (action_name == 'show') %>
-      <span class="input-group-addon">
-        <i class="fa fa-clock-o"></i>
-      </span>
-    </div>
-  </div>
-</div>
-
-<div class="form-group">
-  <%= f.label :note, class: 'col-sm-3 control-label' %>
-  <div class="col-sm-4">
-    <%= f.text_area :note, class: 'form-control', disabled: (action_name == 'show') %>
-  </div>
-</div>
-
-<div class="form-group">
-  <%= f.label :line_items, class: 'col-sm-3 control-label' %>
-
-  <div class="col-sm-9">
-    <% if action_name != 'show' %>
-    <a href="#" data-toggle="modal" data-target="#products-modal" class="btn btn-sm pull-right">Show Products</a>
-    <div class="clearfix"></div>
-    <% end %>
-    <div class="table-responsive">
-      <table class="table table-condensed">
-        <thead>
-          <th>Product</th>
-          <th class="text-right">Price</th>
-          <th class="text-center">Quantity</th>
-          <th class="text-right">Total</th>
-          <th></th>
-        </thead>
-        <tbody id="line_items">
-          <%= render 'line_items/body' %>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-</div>
-
-<% if action_name =='show' %>
-<div class="form-group">
-  <label class="col-sm-3 control-label">Add Payment URL</label>
-  <div class="col-sm-6">
-    <%= text_field_tag :add_payment_url, nil, class: 'form-control', disabled: (action_name == 'show') %>
-  </div>
-  <div class="col-sm-3">
-    <%= link_to 'Create URL', payments_add_path(cart_id: cart.id), remote: true, class: 'btn btn-success' %>
-  </div>
-</div>
-<% end %>
-
-<% if action_name != 'show' %>
-<div class="form-group">
-  <div class="col-sm-3"></div>
-  <div class="col-sm-9">
-      <%= f.submit class: 'btn btn-success'%>
-  </div>
-</div>
-<% end %>
+  <%= render 'carts/partials/user', f: f %>
+  <%= render 'carts/partials/start_date', f: f %>
+  <%= render 'carts/partials/start_time', f: f %>
+  <%= render 'carts/partials/note', f: f %>
+  <%= render 'carts/partials/line_items', f: f %>
+  <%= render 'carts/partials/discount_items', f: f %>
+  <%# render 'carts/partials/session', f: f %>
+  <%= render 'carts/partials/button', f: f %>
 
 <% end %>
 
-<div class="modal fade slide-right" id="products-modal" tabindex="-1" role="dialog" aria-labelledby="products" aria-hidden="true">
-  <div class="modal-dialog modal-md">
-    <div class="modal-content-wrapper">
-      <div class="modal-content table-block">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-          <i class="pg-close fs-14"></i>
-        </button>
-        <div class="modal-body">
+<%= render 'carts/partials/discounts_modal' %>
+<%= render 'carts/partials/products_modal' %>
 
-          <!-- PRODUCTS TABLE -->
-          <div class="table-responsive">
-            <table class="table table-condensed">
-              <thead>
-                <th>Product</th>
-                <th>Price</th>
-                <th></th>
-              </thead>
-              <tbody>
-                <% Product.all.each do |product| %>
-                <tr>
-                  <td class="bold"><%= product.title %></td>
-                  <td><%= number_to_currency(product.price, locale: :ru) %></td>
-                  <td><%= link_to 'Add unit', line_items_path(product_id: product.id, cart_id: cart.id), method: :post, remote: true, class: 'btn btn-success' %></td>
-                </tr>
-                <% end %>
-              </tbody>
-            </table>
-          </div>
-          <!-- END PRODUCTS TABLE -->
 
-        </div>
-      </div>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
+
+
 
 <% content_for :script do %>
 <script type="text/javascript">
   <% if action_name != 'show' %>
-
   $('.date').datepicker({ defaultViewDate: moment(<%= @cart.start_date %>).toDate(), startDate: 'today', format: 'dd/mm/yyyy' });
-
   <% end %>
 
   $(".timepicker").timepicker({ minuteStep: 30, defaultTime: "<%= @cart.start_time %>", showMeridian: false });

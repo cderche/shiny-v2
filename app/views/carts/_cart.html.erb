@@ -1,0 +1,41 @@
+<div class="panel panel-default m-t-30">
+  <div class="panel-heading">
+    <h1 class="panel-title">Cart Summary</h1>
+    <div class="pull-right btn-group">
+      <%= link_to carts_path, class: 'btn' do %>
+        <i class="fa fa-list"></i>
+      <% end %>
+      <%= link_to edit_cart_path(@cart), class: 'btn' do %>
+        <i class="fa fa-pencil"></i>
+      <% end %>
+      <%= link_to @cart, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn' do %>
+        <i class="fa fa-trash"></i>
+      <% end %>
+    </div>
+    <span class="clearfix"></span>
+    <span class="clearfix"></span>
+  </div>
+
+  <div class="panel-body">
+    <div class="row">
+      <div class="table-responsive col-sm-6 col-md-5">
+        <table class="table table-condensed">
+          <tbody>
+            <tr>
+              <td>Sub total</td>
+              <td class="bold text-right"><%= number_to_currency(@cart.sub_total, locale: :ru) %></td>
+            </tr>
+            <tr>
+              <td>Discount</td>
+              <td class="bold text-right"><%= number_to_currency(@cart.discount_total, locale: :ru) %></td>
+            </tr>
+            <tr>
+              <td>Total</td>
+              <td class="bold text-right"><%= number_to_currency(@cart.total, locale: :ru) %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

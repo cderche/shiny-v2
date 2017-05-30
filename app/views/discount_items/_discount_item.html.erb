@@ -1,0 +1,15 @@
+<tr>
+
+  <td>
+    <% if action_name != 'show' %>
+      <%= link_to discount_item, method: :delete, remote: true, class: 'btn btn-danger btn-sm' do %>
+        <i class="fa fa-times"></i>
+      <% end %>
+    </div>
+    <% end %>
+  </td>
+
+  <td class="bold"><%= discount_item.discount.coupon %></td>
+  <td><%= present_discount(discount_item) %></td>
+  <td><%= number_to_currency(discount_item.real_value, locale: :ru) %></td>
+</tr>

@@ -1,0 +1,39 @@
+<!-- PRODUCTS MODAL -->
+<div class="modal fade slide-right" id="products-modal" tabindex="-1" role="dialog" aria-labelledby="products" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content-wrapper">
+      <div class="modal-content table-block">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <i class="pg-close fs-14"></i>
+        </button>
+        <div class="modal-body">
+
+          <!-- PRODUCTS TABLE -->
+          <div class="table-responsive">
+            <table class="table table-condensed">
+              <thead>
+                <th>Product</th>
+                <th>Price</th>
+                <th></th>
+              </thead>
+              <tbody>
+                <% Product.all.each do |product| %>
+                <tr>
+                  <td class="bold"><%= product.title %></td>
+                  <td><%= number_to_currency(product.price, locale: :ru) %></td>
+                  <td><%= link_to 'Add unit', line_items_path(product_id: product.id, cart_id: @cart.id), method: :post, remote: true, class: 'btn btn-success' %></td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <!-- END PRODUCTS TABLE -->
+
+        </div>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- END PRODUCTS MODAL -->
