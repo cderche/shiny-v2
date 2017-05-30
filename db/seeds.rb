@@ -15,3 +15,5 @@ Discount.create!(coupon: 'EVERYWEEK'    , discount_type: :percentage  , value: 1
 Discount.create!(coupon: 'EVERY2WEEKS'  , discount_type: :percentage  , value: 5    , recurring: true)
 Discount.create!(coupon: '100OFF'       , discount_type: :fixed       , value: 100  , recurring: false)
 Discount.create!(coupon: 'FIRSTCLEAN10' , discount_type: :percentage  , value: 10   , recurring: false)
+
+User.create!(email: 'admin@getshiny.ru' , password: 'password'  , password_confirmation: 'password')

@@ -14,10 +14,10 @@
       </button>
       <ul class="dropdown-menu profile-dropdown" role="menu">
         <li>
-          <a href="#">
+          <%= link_to edit_user_registration_path do %>
             <i class="pg-settings_small"></i>
             <span>Settings</span>
-          </a>
+          <% end %>
         </li>
         <li>
           <a href="#">
@@ -30,12 +30,12 @@
             Help</a>
         </li>
         <li class="bg-master-lighter">
-          <a href="#">
+          <%= link_to destroy_user_session_path, method: :delete do %>
             <span class="pull-left">Logout</span>
             <span class="pull-right">
               <i class="pg-power"></i>
             </span>
-          </a>
+          <% end %>
         </li>
       </ul>
     </div>

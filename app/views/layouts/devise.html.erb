@@ -28,7 +28,7 @@
 
           <!-- START links -->
           <div class="m-t-20 fs-11">
-            <%= render 'devise/shared/links' %>
+            <%= render 'devise/shared/links' unless (controller_name.to_sym == :registrations && action_name.to_sym == :edit)%>
           </div>
           <!-- END links -->
 
