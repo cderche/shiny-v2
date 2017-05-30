@@ -35,6 +35,10 @@ class Cart < ApplicationRecord
     sub_total - discount_total
   end
 
+  def estimate_duration
+    sub_total / ENV['HOUR_RATE'].to_i * 60 * 60
+  end
+
   private
 
   def set_defaults

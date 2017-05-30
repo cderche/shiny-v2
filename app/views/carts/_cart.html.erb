@@ -33,6 +33,10 @@
               <td>Total</td>
               <td class="bold text-right"><%= number_to_currency(@cart.total, locale: :ru) %></td>
             </tr>
+            <tr>
+              <td>Duration</td>
+              <td class="bold text-right"><%= distance_of_time_in_words(@cart.estimate_duration) %></td>
+            </tr>
           </tbody>
         </table>
       </div>
