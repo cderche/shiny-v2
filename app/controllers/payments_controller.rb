@@ -8,7 +8,7 @@ class PaymentsController < ApplicationController
 
     data = {
       SessionType:  'Block'               ,
-      VWUserLgn:    'ghost2@getshiny.ru'  ,
+      VWUserLgn:    @cart.user.email      ,
       VWUserPsw:    'password'            ,
       OrderId:       @cart.id.to_s        ,
       Amount:       '100'

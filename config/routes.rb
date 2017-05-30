@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
   get 'payments/add'
 
-  get 'users/index'
-
-  devise_for :users
+  devise_for :users, controllers: { invitations: 'users/invitations' }
   root to:'admin#dashboard'
 
   resources :line_items
