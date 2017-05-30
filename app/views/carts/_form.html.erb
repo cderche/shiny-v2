@@ -3,10 +3,19 @@
 
 <div class="form-group">
   <%= f.label :start_date, class: 'col-sm-3 control-label' %>
+  <div class="col-sm-3">
+    <%= f.collection_select :user_id, User.all, :id, :email, {}, { class: 'form-control', disabled: (action_name == 'show') } %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :start_date, class: 'col-sm-3 control-label' %>
   <div class="col-sm-3 col-md-2">
     <div class="input-group date">
       <%= f.text_field :start_date, class: 'form-control', disabled: (action_name == 'show') %>
-      <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+      <span class="input-group-addon">
+        <i class="fa fa-calendar"></i>
+      </span>
     </div>
   </div>
 </div>
@@ -86,11 +95,11 @@
               </thead>
               <tbody>
                 <% Product.all.each do |product| %>
-                  <tr>
-                    <td class="bold"><%= product.title %></td>
-                    <td><%= number_to_currency(product.price, locale: :ru) %></td>
-                    <td><%= link_to 'Add unit', line_items_path(product_id: product.id, cart_id: cart.id), method: :post, remote: true, class: 'btn btn-success' %></td>
-                  </tr>
+                <tr>
+                  <td class="bold"><%= product.title %></td>
+                  <td><%= number_to_currency(product.price, locale: :ru) %></td>
+                  <td><%= link_to 'Add unit', line_items_path(product_id: product.id, cart_id: cart.id), method: :post, remote: true, class: 'btn btn-success' %></td>
+                </tr>
                 <% end %>
               </tbody>
             </table>
@@ -106,21 +115,13 @@
 </div>
 
 <% content_for :script do %>
-  <script type="text/javascript">
-    <% if action_name != 'show' %>
+<script type="text/javascript">
+  <% if action_name != 'show' %>
 
-    $('.date').datepicker({
-      defaultViewDate: moment(<%= @cart.start_date %>).toDate(),
-      startDate: 'today',
-      format: 'dd/mm/yyyy'
-    });
+  $('.date').datepicker({ defaultViewDate: moment(<%= @cart.start_date %>).toDate(), startDate: 'today', format: 'dd/mm/yyyy' });
 
-    <% end %>
+  <% end %>
 
-    $(".timepicker").timepicker({
-      minuteStep: 30,
-      defaultTime: "<%= @cart.start_time %>",
-      showMeridian: false
-    });
-  </script>
+  $(".timepicker").timepicker({ minuteStep: 30, defaultTime: "<%= @cart.start_time %>", showMeridian: false });
+</script>
 <% end %>

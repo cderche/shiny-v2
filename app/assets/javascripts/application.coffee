@@ -9,11 +9,12 @@
 #= require imagesloaded/imagesloaded.pkgd.min
 #= require jquery-actual/jquery.actual.min
 #= require jquery-scrollbar/jquery.scrollbar.min
-#= require jquery-inputmask/jquery.inputmask.min.js
-#= require jquery-autonumeric/autoNumeric.js
-#= require bootstrap-datepicker/js/bootstrap-datepicker.js
+#= require jquery-inputmask/jquery.inputmask.min
+#= require jquery-autonumeric/autoNumeric
+#= require bootstrap-datepicker/js/bootstrap-datepicker
 #= require bootstrap-timepicker/bootstrap-timepicker.min
 #= require moment/moment.min
+#= require bootstrap-select2/select2.min
 #= require pages
 #= require turbolinks
 #= require_tree .

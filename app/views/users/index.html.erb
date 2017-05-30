@@ -20,7 +20,7 @@
             <tr>
               <td class="v-align-middle"><%= user.email %></td>
               <td class="v-align-middle"><%= time_ago_in_words(user.created_at) %> ago</td>
-              <td class="v-align-middle"><%= time_ago_in_words(user.last_sign_in_at) %> ago</td>
+              <td class="v-align-middle"><%= "#{time_ago_in_words(user.last_sign_in_at)} ago" if user.last_sign_in_at %></td>
               <!-- <td class="v-align-middle"><%# link_to 'Show', user, class: 'btn btn-xs btn-primary' %></td> -->
               <!-- <td class="v-align-middle"><%# link_to 'Edit', edit_product_path(product), class: 'btn btn-xs btn-warning' %></td> -->
               <!-- <td class="v-align-middle"><%# link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %></td> -->

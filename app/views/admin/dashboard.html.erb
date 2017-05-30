@@ -9,5 +9,8 @@
     <div class="col-sm-4">
       <%= render partial: 'shared/widgets/counter', locals: { title: 'Carts', path: carts_path, text: Cart.count } %>
     </div>
+    <div class="col-sm-4">
+      <%= render partial: 'shared/widgets/counter', locals: { title: 'Users', path: users_path, text: User.count } %>
+    </div>
   </div>
 </div>
