@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'payments/add'
+
   get 'users/index'
 
   devise_for :users

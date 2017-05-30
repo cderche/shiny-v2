@@ -1,0 +1,6 @@
+<% if error %>
+  $('#add_payment_url').val("<%= error %>");
+  $('#add_payment_url').addClass('b-a b-danger');
+<% else %>
+  $('#add_payment_url').val("<%= uri %>");
+<% end %>
