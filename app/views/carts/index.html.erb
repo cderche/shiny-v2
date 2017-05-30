@@ -10,6 +10,7 @@
     <div class="table-responsive">
       <table class="table">
         <thead>
+          <th>User</th>
           <th>Start date</th>
           <th>Start time</th>
           <th>Sub total</th>
@@ -18,6 +19,7 @@
         <tbody>
           <% @carts.each do |cart| %>
             <tr>
+              <td class="v-align-middle"><%= cart.try(:user).try(:email) %></td>
               <td class="v-align-middle"><%= cart.start_date %></td>
               <td class="v-align-middle"><%= cart.start_time %></td>
               <td class="v-align-middle"><%= number_to_currency(cart.sub_total, locale: :ru) %></td>

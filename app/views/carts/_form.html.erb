@@ -2,7 +2,7 @@
 <%= render partial: 'shared/error', locals: { object: cart } %>
 
 <div class="form-group">
-  <%= f.label :start_date, class: 'col-sm-3 control-label' %>
+  <%= f.label :user, class: 'col-sm-3 control-label' %>
   <div class="col-sm-3">
     <%= f.collection_select :user_id, User.all, :id, :email, {}, { class: 'form-control', disabled: (action_name == 'show') } %>
   </div>
@@ -10,7 +10,7 @@
 
 <div class="form-group">
   <%= f.label :start_date, class: 'col-sm-3 control-label' %>
-  <div class="col-sm-3 col-md-2">
+  <div class="col-sm-3">
     <div class="input-group date">
       <%= f.text_field :start_date, class: 'form-control', disabled: (action_name == 'show') %>
       <span class="input-group-addon">
@@ -22,7 +22,7 @@
 
 <div class="form-group">
   <%= f.label :start_time, class: 'col-sm-3 control-label' %>
-  <div class="col-sm-3 col-md-2">
+  <div class="col-sm-3">
     <div class="input-group bootstrap-timepicker">
       <%= f.text_field :start_time, class: 'form-control timepicker', disabled: (action_name == 'show') %>
       <span class="input-group-addon">
@@ -34,7 +34,7 @@
 
 <div class="form-group">
   <%= f.label :note, class: 'col-sm-3 control-label' %>
-  <div class="col-sm-3 col-md-2">
+  <div class="col-sm-4">
     <%= f.text_area :note, class: 'form-control', disabled: (action_name == 'show') %>
   </div>
 </div>
