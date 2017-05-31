@@ -2,6 +2,9 @@ class PaymentsController < ApplicationController
   require 'payture'
   before_action :set_cart, only: [:add]
 
+  skip_before_action :authenticate_user!, only: [:notification]
+  skip_before_action :verify_authenticity_token, only: [:notification]
+
   def add
     puts "Host: #{ENV['PAYTURE_HOST']}"
     puts "Add: #{ENV['PAYTURE_ADD']}"
@@ -49,6 +52,10 @@ class PaymentsController < ApplicationController
         format.js
       end
     end
+  end
+
+  def notification
+    head :ok
   end
 
   private
