@@ -4,6 +4,7 @@
   <%= f.label :session_uri, class: 'col-sm-3 control-label' %>
   <div class="col-sm-6">
     <%= f.text_field :session_uri, class: 'form-control', disabled: (action_name == 'show') %>
+    <label id="cart_session_uri_error" class="error"></label>
   </div>
   <div class="col-sm-3">
     <%= link_to 'Create Session', add_payments_path(cart_id: @cart.id), remote: true, class: 'btn btn-success' %>
