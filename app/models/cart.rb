@@ -1,6 +1,8 @@
 class Cart < ApplicationRecord
   require 'net/http'
 
+  has_secure_token
+
   has_many :line_items, dependent: :destroy
   has_many :discount_items, dependent: :destroy
   belongs_to :user, optional: true

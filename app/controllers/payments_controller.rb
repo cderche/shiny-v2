@@ -13,7 +13,7 @@ class PaymentsController < ApplicationController
       SessionType:  'Block'               ,
       VWUserLgn:    @cart.user.email      ,
       VWUserPsw:    'password'            ,
-      OrderId:       @cart.id.to_s        ,
+      OrderId:       @cart.token.to_s     ,
       Amount:       '100'
     }
 
