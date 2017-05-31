@@ -19,6 +19,15 @@ class PaymentsController < ApplicationController
   end
 
   def notification
+    data = {
+      cart_token: params['OrderId']         ,
+      success: params['Success'] == 'True'  ,
+      card_id:  params['CardId']            ,
+      notification: params['Notification']
+    }
+
+    puts "data: #{data}"
+
     head :ok
   end
 
