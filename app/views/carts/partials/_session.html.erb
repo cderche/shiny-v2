@@ -1,12 +1,12 @@
 <!-- SESSION INPUT -->
 <% if action_name =='show' %>
 <div class="form-group">
-  <%= f.label :session, class: 'col-sm-3 control-label' %>
+  <%= f.label :session_uri, class: 'col-sm-3 control-label' %>
   <div class="col-sm-6">
-    <%= text_field_tag :session, nil, class: 'form-control', disabled: (action_name == 'show') %>
+    <%= f.text_field :session_uri, class: 'form-control', disabled: (action_name == 'show') %>
   </div>
   <div class="col-sm-3">
-    <%= link_to 'Create URL', payments_add_path(cart_id: cart.id), remote: true, class: 'btn btn-success' %>
+    <%= link_to 'Create Session', payments_add_path(cart_id: @cart.id), remote: true, class: 'btn btn-success' %>
   </div>
 </div>
 <% end %>

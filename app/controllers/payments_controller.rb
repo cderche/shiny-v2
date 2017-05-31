@@ -15,24 +15,38 @@ class PaymentsController < ApplicationController
     }
 
     puts "data: #{data}"
-
     begin
       w = Payture::Wallet.new(ENV['PAYTURE_HOST'])
       response = w.init(ENV['PAYTURE_ADD'], data)
-      puts "response: #{response}"
+
       respond_to do |format|
-        if response['Init']['Success'] == 'False'
-          format.html redirect_to session_uri
-          format.js { render :add, locals: { error: response['Init']['ErrCode'] } }
+        if valid?(response)
+          if @cart.update(session: response['Init']['SessionId'])
+            format.html { redirect_to @cart.session_uri }
+            format.js
+          else
+            format.html { redirect_back(fallback_location: root_path) }
+            format.js
+          end
         else
-          format.js { render :add, locals: { error: nil, uri: session_uri('Pay', response) } }
+          case response['Init']['ErrCode']
+          when 'DUPLICATE_ORDER_ID'
+            format.js
+            format.html { redirect_to @cart.session_uri }
+          when 'WRONG_PARAMS'
+            # puts "Wrong params"
+            @cart.errors.add(:session, :invalid, message: 'Wrong set or format of parameters')
+            format.html { redirect_back(fallback_location: root_path) }
+            format.js
+          end
         end
       end
     rescue REXML::ParseException => ex
       puts "Failed: #{ex.message[/^.*$/]} (#{ex.message[/Line:\s\d+/]})"
       respond_to do |format|
-        format.html { render :back }
-        format.js { render :add, locals: { error: "Request was unsuccessful" } }
+        @cart.errors.add(:session, :invalid, message: ex.message)
+        format.html { redirect_back(fallback_location: root_path) }
+        format.js
       end
     end
   end
@@ -43,15 +57,8 @@ class PaymentsController < ApplicationController
     @cart = Cart.find(params[:cart_id])
   end
 
-  def session_uri(type, response)
-    sessionId = response['Init']['SessionId']
-    URI::HTTPS.build({
-      host: ENV['PAYTURE_HOST'] ,
-      path: "/vwapi/#{type}"        ,
-      query: {
-        SessionId:    sessionId
-      }.to_query
-    })
+  def valid?(response)
+    response['Init']['Success'] == 'True' ? true : false
   end
 end
 

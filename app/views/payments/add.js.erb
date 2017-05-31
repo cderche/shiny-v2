@@ -1,6 +1,8 @@
-<% if error %>
-  $('#add_payment_url').val("<%= error %>");
-  $('#add_payment_url').addClass('b-a b-danger');
+<% unless @cart.errors.empty? %>
+  <% puts @cart.errors.inspect %>
+  $('#cart_session_uri').val("<%= @cart.errors.full_message(:session, :invalid) %>");
+  $('#cart_session_uri').addClass('b-a b-danger');
 <% else %>
-  $('#add_payment_url').val("<%= uri %>");
+  $('#cart_session_uri').val("<%= @cart.session_uri %>");
+  $('#cart_session_uri').removeClass('b-a b-danger');
 <% end %>

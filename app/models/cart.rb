@@ -1,4 +1,6 @@
 class Cart < ApplicationRecord
+  require 'net/http'
+
   has_many :line_items, dependent: :destroy
   has_many :discount_items, dependent: :destroy
   belongs_to :user, optional: true
@@ -37,6 +39,17 @@ class Cart < ApplicationRecord
 
   def estimate_duration
     sub_total / ENV['HOUR_RATE'].to_i * 60 * 60
+  end
+
+  def session_uri
+    return "" if session.blank?
+    URI::HTTPS.build({
+      host: ENV['PAYTURE_HOST'] ,
+      path: "/vwapi/Pay"        ,
+      query: {
+        SessionId: session
+      }.to_query
+    })
   end
 
   private
