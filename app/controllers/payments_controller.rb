@@ -21,6 +21,7 @@ class PaymentsController < ApplicationController
     begin
       w = Payture::Wallet.new(ENV['PAYTURE_HOST'])
       response = w.init(ENV['PAYTURE_ADD'], data)
+      puts "Payture: #{response}"
 
       respond_to do |format|
         if valid?(response)
