@@ -6,7 +6,7 @@
     <%= f.text_field :session_uri, class: 'form-control', disabled: (action_name == 'show') %>
   </div>
   <div class="col-sm-3">
-    <%= link_to 'Create Session', payments_add_path(cart_id: @cart.id), remote: true, class: 'btn btn-success' %>
+    <%= link_to 'Create Session', add_payments_path(cart_id: @cart.id), remote: true, class: 'btn btn-success' %>
   </div>
 </div>
 <% end %>
