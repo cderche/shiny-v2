@@ -18,5 +18,7 @@ Rails.application.routes.draw do
   end
 
   post :notifications, to: 'payments#notification'
+
+  get :result, to: 'payments#result'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

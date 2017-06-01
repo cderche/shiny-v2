@@ -18,7 +18,8 @@ class PaytureService
       VWUserLgn:    @cart.user.email  ,
       VWUserPsw:    'password'        ,
       OrderId:      @cart.token       ,
-      Amount:       100
+      Amount:       100               ,
+      Url:          callback_url
     }
     puts "data #{data}"
     init(data)
@@ -52,5 +53,16 @@ class PaytureService
     else
       @cart.errors.add(:session, r.error)
     end
+  end
+
+  def callback_url
+    URI::HTTP.build({
+      host: ENV['DOMAIN']   ,
+      port: ENV['PORT']     ,
+      path: "/result"       ,
+      query: {
+        token: @cart.token
+      }.to_query
+    }).to_s
   end
 end
