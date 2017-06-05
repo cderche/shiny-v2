@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :orders
   resources :discount_items
 
   devise_for :users, controllers: { invitations: 'users/invitations' }

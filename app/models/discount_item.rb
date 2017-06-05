@@ -1,6 +1,7 @@
 class DiscountItem < ApplicationRecord
   belongs_to :discount
   belongs_to :cart
+  belongs_to :order, optional: true
 
   def real_value
     # puts "discount.discount_type: #{discount.discount_type}"

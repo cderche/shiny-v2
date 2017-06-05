@@ -7,6 +7,7 @@ class ConvertToOrder
   def convert
     @order = Order.new
     @order.convert_from_cart(@cart)
+    @order.save
   end
 
 end
