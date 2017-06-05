@@ -19,7 +19,12 @@ class PaymentsController < ApplicationController
   end
 
   def notification
-    if PaytureResponse.new(params).sort
+    puts "Notification received: #{notification_params.inspect}"
+    pns = PaymentNotificationService.new({
+      state: notification_params[:Notification] ,
+      token: notification_params[:OrderId]
+    })
+    if pns.sort
       head :ok
     else
       head :bad_request
@@ -30,6 +35,11 @@ class PaymentsController < ApplicationController
 
   def set_cart
     @cart = Cart.find(params[:cart_id])
+  end
+
+  def notification_params
+    dump = params.permit(:Notification, :OrderId, :CardId)
+    # params.permit!
   end
 
 end

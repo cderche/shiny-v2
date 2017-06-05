@@ -8,6 +8,7 @@
     <%= render partial: 'shared/sidebar/item', locals: { klass: ''        , path: discounts_path  , title: 'Discounts'  , icon: 'fa-percent'        , details: pluralize(Discount.count, 'discount') } %>
     <%= render partial: 'shared/sidebar/item', locals: { klass: ''        , path: carts_path      , title: 'Carts'      , icon: 'fa-shopping-cart'  , details: pluralize(Cart.count, 'cart') } %>
     <%= render partial: 'shared/sidebar/item', locals: { klass: ''        , path: users_path      , title: 'Users'      , icon: 'fa-user'           , details: pluralize(User.count, 'user') } %>
+    <%= render partial: 'shared/sidebar/item', locals: { klass: ''        , path: orders_path     , title: 'Orders'     , icon: 'fa-archive'        , details: pluralize(Order.count, 'order') } %>
 
   </ul>
   <!-- END SIDEBAR MENU ITEMS-->

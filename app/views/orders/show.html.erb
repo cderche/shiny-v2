@@ -25,5 +25,11 @@
   <%= @order.token %>
 </p>
 
+<p>
+  <strong>Line Items:</strong><br>
+  <% @order.line_items.each do |item| %>
+    <%= item.product.title %>, <%= item.quantity %>, <%= item.total_price %><br>
+  <% end %>
+</p>
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>

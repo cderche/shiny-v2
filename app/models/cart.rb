@@ -1,5 +1,6 @@
 class Cart < ApplicationRecord
   require 'net/http'
+  include Calc
 
   has_secure_token
 
@@ -25,22 +26,6 @@ class Cart < ApplicationRecord
       current_item = discount_items.build(discount: discount)
     end
     current_item
-  end
-
-  def sub_total
-    line_items.to_a.sum { |i| i.total_price }
-  end
-
-  def discount_total
-    discount_items.to_a.sum { |i| i.real_value }
-  end
-
-  def total
-    sub_total - discount_total
-  end
-
-  def estimate_duration
-    sub_total / ENV['HOUR_RATE'].to_i * 60 * 60
   end
 
   def session_uri
