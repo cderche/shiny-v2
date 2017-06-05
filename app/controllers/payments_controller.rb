@@ -21,8 +21,9 @@ class PaymentsController < ApplicationController
   def notification
     puts "Notification received: #{notification_params.inspect}"
     pns = PaymentNotificationService.new({
-      state: notification_params[:Notification] ,
-      token: notification_params[:OrderId]
+      state:    notification_params[:Notification] ,
+      token:    notification_params[:OrderId]      ,
+      card_id:  notification_params[:CardId]
     })
     if pns.sort
       head :ok

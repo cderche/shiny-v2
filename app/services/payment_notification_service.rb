@@ -3,8 +3,9 @@ class PaymentNotificationService
 
   def initialize(attributes = {})
     puts "PaymentNotificationService.initialize"
-    @state = attributes[:state]
-    @token = attributes[:token]
+    @state    = attributes[:state]
+    @token    = attributes[:token]
+    @card_id  = attributes[:card_id]
   end
 
   def sort
@@ -33,7 +34,8 @@ class PaymentNotificationService
       discount_items: cart.discount_items ,
       time:           cart.start_time     ,
       date:           cart.start_date     ,
-      note:           cart.note
+      note:           cart.note           ,
+      card_id:        @card_id
     })
   end
 end
