@@ -1,6 +1,6 @@
 require 'payture'
 
-class PaytureService
+class PaytureRequest
   def initialize(params)
     @cart = params[:cart]
     @wallet = Payture::Wallet.new(ENV['PAYTURE_HOST'])

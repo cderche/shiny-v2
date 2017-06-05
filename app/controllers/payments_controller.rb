@@ -5,7 +5,7 @@ class PaymentsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:notification]
 
   def add
-    PaytureService.new({ cart: @cart }).connect_card
+    PaytureRequest.new({ cart: @cart }).connect_card
 
     respond_to do |format|
       if @cart.session
@@ -19,16 +19,11 @@ class PaymentsController < ApplicationController
   end
 
   def notification
-    data = {
-      cart_token: params['OrderId']         ,
-      success: params['Success'] == 'True'  ,
-      card_id:  params['CardId']            ,
-      notification: params['Notification']
-    }
-
-    puts "data: #{data}"
-
-    head :ok
+    if PaytureResponse.new(params).sort
+      head :ok
+    else
+      head :bad_request
+    end
   end
 
   private
