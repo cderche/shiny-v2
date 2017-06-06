@@ -34,6 +34,7 @@ class PaytureRequest
       r = PaytureResponse.new(rattr)
       obj.charged_at = DateTime.now if r.success
     rescue REXML::ParseException => ex
+      puts "ERROR: #{ex.message}"
       obj.errors.add(:session, ex.message)
     end
   end

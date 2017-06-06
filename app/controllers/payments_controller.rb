@@ -27,7 +27,7 @@ class PaymentsController < ApplicationController
         format.html { redirect_to @order }
         format.js
       else
-        flash[:danger] = "We were unable to charge for this order."
+        flash[:danger] = "We were unable to charge for this order: #{@order.errors.full_messages}"
         format.html { redirect_back(fallback_location: root_path) }
         format.js
       end
