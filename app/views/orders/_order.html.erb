@@ -1,11 +1,13 @@
 <tr>
+  <td class="v-align-middle"><%= content_tag :i, nil, class: 'fa fa-check text-success' if order.charged? %></td>
+  <td class="v-align-middle"><%= content_tag :i, nil, class: 'fa fa-refresh text-success' if order.recurring? %></td>
   <td class="v-align-middle"><%= number_to_currency(order.total, locale: :ru) %></td>
   <td class="v-align-middle"><%= distance_of_time_in_words(order.estimate_duration) %></td>
   <td class="v-align-middle"><%= order.date %></td>
   <td class="v-align-middle"><%= order.time %></td>
   <td class="v-align-middle"><%= order.user.email %></td>
   <td class="v-align-middle">
-    <div class="btn-group">
+    <div class="btn-group btn-group-sm">
       <%= icon_link(order, 'fa fa-info', class: 'btn btn-info') %>
       <%= icon_link(edit_order_path(order), 'fa fa-pencil', class: 'btn btn-warning') %>
       <%= icon_link(order, 'fa fa-trash', method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger') %>

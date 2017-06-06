@@ -4,6 +4,7 @@ class Order < ApplicationRecord
 
   has_many :line_items, dependent: :destroy
   has_many :discount_items, dependent: :destroy
+  has_many :discounts, through: :discount_items
   belongs_to :user
 
   def amount_to_charge
@@ -12,6 +13,10 @@ class Order < ApplicationRecord
 
   def charged?
     charged_at?
+  end
+
+  def recurring?
+    discounts.exists?(recurring: true)
   end
 
 end
