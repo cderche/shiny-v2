@@ -3,6 +3,7 @@ require 'payture'
 class PaytureRequest
   def initialize(params)
     @cart = params[:cart]
+    @order = params[:order]
     @wallet = Payture::Wallet.new(ENV['PAYTURE_HOST'])
   end
 
@@ -10,7 +11,32 @@ class PaytureRequest
     block
   end
 
+  def charge
+    data = {
+      VWUserLgn:    @order.user.email       ,
+      VWUserPsw:    'password'              ,
+      OrderId:      @order.token            ,
+      # Amount:       @order.amount_to_charge ,
+      Amount:       100 ,
+      CardId:       @order.card_id
+    }
+    puts "data: #{data}"
+    pay(data, @order)
+  end
+
   private
+
+  def pay(data, obj)
+    begin
+      r = @wallet.pay(ENV['PAYTURE_PAY'], data)
+      puts "r: #{r.inspect}"
+      rattr = attributes(r, 'Pay')
+      r = PaytureResponse.new(rattr)
+      obj.charged_at = DateTime.now if r.success
+    rescue REXML::ParseException => ex
+      obj.errors.add(:session, ex.message)
+    end
+  end
 
   def block
     data = {
@@ -22,20 +48,18 @@ class PaytureRequest
       Url:          callback_url
     }
     puts "data #{data}"
-    init(data)
+    init(ENV['PAYTURE_ADD'], data, @cart)
   end
 
-  def init(data)
+  def init(merchant, data, obj)
     begin
-      r = @wallet.init(ENV['PAYTURE_ADD'], data)
+      r = @wallet.init(merchant, data)
       rattr = attributes(r, 'Init')
       puts "rattr: #{rattr}"
       r = PaytureResponse.new(rattr)
-      set_session(r)
+      set_session(r, obj)
     rescue REXML::ParseException => ex
-      respond_to do |format|
-        @cart.errors.add(:session, ex.message)
-      end
+      obj.errors.add(:session, ex.message)
     end
   end
 
@@ -47,11 +71,11 @@ class PaytureRequest
     }
   end
 
-  def set_session(r)
+  def set_session(r, obj)
     if r.success
-      @cart.update(session: r.session)
+      obj.update(session: r.session)
     else
-      @cart.errors.add(:session, r.error)
+      obj.errors.add(:session, r.error)
     end
   end
 

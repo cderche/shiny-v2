@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170605132457) do
+ActiveRecord::Schema.define(version: 20170606104559) do
 
   create_table "carts", force: :cascade do |t|
     t.text     "start_date"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20170605132457) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "card_id"
+    t.datetime "charged_at"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 

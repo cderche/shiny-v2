@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: [:show, :edit, :update, :destroy]
+  before_action :set_cart, only: [:show, :edit, :update, :destroy, :convert]
 
   # GET /carts
   # GET /carts.json
@@ -59,6 +59,29 @@ class CartsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to carts_url, notice: 'Cart was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  # TODO REMOVE THIS METHOD
+  def convert
+    data = {
+      user:           @cart.user           ,
+      line_items:     @cart.line_items     ,
+      discount_items: @cart.discount_items ,
+      time:           @cart.start_time     ,
+      date:           @cart.start_date     ,
+      note:           @cart.note           ,
+      card_id:        '697ee0b2-8db5-490c-8a92-9086587eb40e'
+    }
+    @order = Order.create(data)
+    respond_to do |format|
+      if @order
+        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+        format.json { render :show, status: :ok, location: @order }
+      else
+        format.html { render :edit }
+        format.json { render json: @cart.errors, status: :unprocessable_entity }
+      end
     end
   end
 

@@ -6,4 +6,12 @@ class Order < ApplicationRecord
   has_many :discount_items, dependent: :destroy
   belongs_to :user
 
+  def amount_to_charge
+    total * 100
+  end
+
+  def charged?
+    charged_at?
+  end
+
 end

@@ -1,5 +1,6 @@
 class PaymentsController < ApplicationController
   before_action :set_cart, only: [:add]
+  before_action :set_order, only: [:charge, :charge2]
 
   skip_before_action :authenticate_user!, only: [:notification]
   skip_before_action :verify_authenticity_token, only: [:notification]
@@ -12,6 +13,21 @@ class PaymentsController < ApplicationController
         format.html { redirect_to @cart.session_uri }
         format.js
       else
+        format.html { redirect_back(fallback_location: root_path) }
+        format.js
+      end
+    end
+  end
+
+  def charge
+    PaytureRequest.new({ order: @order }).charge
+    respond_to do |format|
+      if @order.charged?
+        flash[:success] = "This order was successfully charged."
+        format.html { redirect_to @order }
+        format.js
+      else
+        flash[:danger] = "We were unable to charge for this order."
         format.html { redirect_back(fallback_location: root_path) }
         format.js
       end
@@ -41,6 +57,10 @@ class PaymentsController < ApplicationController
   def notification_params
     dump = params.permit(:Notification, :OrderId, :CardId)
     # params.permit!
+  end
+
+  def set_order
+    @order = Order.find(params[:order_id])
   end
 
 end

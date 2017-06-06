@@ -1,5 +1,6 @@
 class PaymentNotificationService
   CUSTOMER_PAY_SUCCESS = 'CustomerPaySuccess'
+  CUSTOMER_ADD_SUCCESS = 'CustomerAddSuccess'
 
   def initialize(attributes = {})
     puts "PaymentNotificationService.initialize"
@@ -13,6 +14,8 @@ class PaymentNotificationService
     puts "@state: #{@state}"
     puts "@token: #{@token}"
     case @state
+    when CUSTOMER_ADD_SUCCESS
+      add_success
     when CUSTOMER_PAY_SUCCESS
       pay_success
     end
@@ -20,10 +23,12 @@ class PaymentNotificationService
 
   private
 
-  def pay_success
-    puts "PaymentNotificationService.pay_success"
+  def add_success
     create_order if Cart.exists?(token: @token)
-    # TODO What happens if this is related to an order.
+  end
+
+  def pay_success
+    
   end
 
   def create_order

@@ -7,14 +7,16 @@ Rails.application.routes.draw do
 
   resources :line_items
   resources :carts
+
   resources :discounts
   resources :products
   resources :users, only: [:index]
 
   resources :payments, only: [] do
     collection do
-      get :add
-      post :notification
+      get   :add
+      get   :charge
+      post  :notification
     end
   end
 
