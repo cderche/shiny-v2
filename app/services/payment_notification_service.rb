@@ -28,7 +28,8 @@ class PaymentNotificationService
   end
 
   def pay_success
-    
+    # TODO This shouldn't be called when we add a card.
+    create_order if Cart.exists?(token: @token)
   end
 
   def create_order
