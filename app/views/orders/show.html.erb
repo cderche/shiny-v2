@@ -26,6 +26,16 @@
 </p>
 
 <p>
+  <strong>Charged at:</strong>
+  <%= @order.charged_at %>
+</p>
+
+<p>
+  <strong>Recurring:</strong>
+  <%= @order.recurring? %>
+</p>
+
+<p>
   <strong>Line Items:</strong><br>
   <% @order.line_items.each do |item| %>
     <%= item.product.title %>, <%= item.quantity %>, <%= item.total_price %><br>
