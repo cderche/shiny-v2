@@ -32,6 +32,7 @@ class PaytureRequest
       puts "r: #{r.inspect}"
       rattr = attributes(r, 'Pay')
       r = PaytureResponse.new(rattr)
+      puts "r: #{r.inspect}"
       obj.update(charged_at: DateTime.now) if r.success
     rescue REXML::ParseException => ex
       puts "ERROR: #{ex.message}"
